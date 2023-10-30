@@ -1,0 +1,76 @@
+<head>
+	
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+          crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	
+	
+	<!-- Modules -->
+	<script src="public/js/app.js"></script>
+	
+	<!-- Controllers -->
+	<script src="public/js/controllers/patenttools.js"></script>
+	
+	<!-- Services -->
+	<script src="public/js/services/patService.js"></script>
+	
+	<!-- Directives -->
+	
+	
+	
+</head>
+
+<html lang="en">
+	<body ng-app="PatentApp">
+		<header>
+			<h1>Claim Extractor</h1>
+			<center>
+				<p>Enter the patent number or upload a patent as a granted file</p>
+			</center>
+		</header>
+		<div ng-controller = "PatentController">
+
+			<div class="container">
+				<div class="jumbotron">
+					
+					<div class="container">
+						<div class=" col-md-6">
+							<div class="form-group form-inline">
+								<input type="text" class="form-control" ng-model="inputPat" placeholder="Enter patent #">
+								<button type="button" class="btn btn-default" ng-click="fetchClaims(inputPat)">Fetch</button>
+							</div>
+							<span class="btn btn-default btn-file">
+								Select File <input type="file" ng-model="file.data" ng-file-select="onFileSelect($files)">
+							</span>
+							{{contents}}						
+						</div>
+						<div id="patGraphContent" class="p-content col-md-6">
+							<div>
+								<p>Patent #: {{patentNum}}</p>
+								<p ng-model="patGraph">{{patGraph}}</p>
+							</div>
+						</div>						
+					</div>
+				</div>			
+			</div>
+		</div><!-- ng-controller -->
+		<div id="loader" class="loader"></div>
+		<footer>
+			<p>&copy; 2023 Claim Extractor</p>
+		</footer>
+		<script>
+			// JavaScript to show/hide the loader
+			function showLoader() {
+				document.getElementById("loader").style.display = "block";
+			}
+
+			function hideLoader() {
+				document.getElementById("loader").style.display = "none";
+			}
+		</script>
+	</body>
+</html>
