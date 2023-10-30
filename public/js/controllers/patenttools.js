@@ -36,9 +36,6 @@ app.controller("PatentController", ['$scope', '$timeout', '$http', 'patentServic
 		
 
 	}
-
-
-	
 	function generateTree(claims, result, callback) {
 		var find = function(i, j, count, pos) {
 			for(var i = 1; i < count; i++) {
